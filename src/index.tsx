@@ -1,14 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import './normalize.css';
-import Home from '~/pages/Home';
+import { BrowserRouter } from 'react-router-dom';
 // import reportWebVitals from './reportWebVitals';
 
+import './index.css';
+import './normalize.css';
+
+import Container from '~/pages/Container';
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
 root.render(
   <React.StrictMode>
-    <Home />
+    <BrowserRouter>
+      <Container />
+    </BrowserRouter>
   </React.StrictMode>,
 );
 
