@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link, Outlet, RouteObject } from 'react-router-dom';
 import routes from '~/routes';
 import './index.css';
@@ -23,7 +23,7 @@ const LayoutApp: React.FC = () => {
     <div className="app-container">
       <div className="app-menu">{createMenu(routes)}</div>
       <div className="app-context-container">
-        <div className="app-header">header</div>
+        {/* <div className="app-header">header</div> */}
         <div className="app-context">
           <Outlet />
         </div>

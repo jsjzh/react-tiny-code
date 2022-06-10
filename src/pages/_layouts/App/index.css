@@ -15,7 +15,8 @@
 }
 
 .app-header {
-  min-height: 5vh;
+  min-height: 10vh;
+  line-height: 10vh;
   background-color: aliceblue;
   text-align: center;
 }
