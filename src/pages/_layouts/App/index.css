@@ -1,0 +1,25 @@
+.app-container {
+  display: flex;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.app-header {
+}
+
+.app-menu {
+}
+
+.app-context-container {
+  flex: 1;
+}
+
+.app-header {
+  min-height: 5vh;
+  background-color: aliceblue;
+  text-align: center;
+}
+
+.app-context {
+  text-align: center;
+}

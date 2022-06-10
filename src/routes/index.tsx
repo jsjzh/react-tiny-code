@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom';
+import { Outlet, RouteObject } from 'react-router-dom';
 
 import LayoutApp from '~/pages/_layouts/App';
 import LayoutDefault from '~/pages/_layouts/Default';
@@ -25,7 +25,7 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '/home',
-        element: <Home />,
+        element: <Outlet />,
         children: [
           { path: '/home/home', element: <Home /> },
           { path: '/home/hook', element: <Hook /> },

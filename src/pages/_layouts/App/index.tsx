@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link, Outlet, RouteObject } from 'react-router-dom';
 import routes from '~/routes';
+import './index.css';
 
 const LayoutApp: React.FC = () => {
   const createMenu = (routes: RouteObject[]) => {
-    return <ul>{routes.map(createLinkItem)}</ul>;
+    return <ul>{routes.map(createMenuItem)}</ul>;
   };
 
-  const createLinkItem = (route: RouteObject) => {
+  const createMenuItem = (route: RouteObject) => {
     return (
       <li key={route.path}>
         <Link key={route.path} to={route.path as string}>
@@ -19,10 +20,15 @@ const LayoutApp: React.FC = () => {
   };
 
   return (
-    <>
-      {createMenu(routes)}
-      <Outlet />
-    </>
+    <div className="app-container">
+      <div className="app-menu">{createMenu(routes)}</div>
+      <div className="app-context-container">
+        <div className="app-header">header</div>
+        <div className="app-context">
+          <Outlet />
+        </div>
+      </div>
+    </div>
   );
 };
 
