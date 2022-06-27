@@ -1,18 +1,18 @@
 import { RouteObject } from 'react-router-dom';
 
-import LayoutApp from '~/pages/_layouts/App';
-import LayoutDefault from '~/pages/_layouts/Default';
+import LayoutContainer from '@/pages/_layouts/Container';
+import LayoutBlank from '@/pages/_layouts/Blank';
 
-import Home from '~/pages/Home';
-import Hook from '~/pages/Hook';
-import HOC from '~/pages/HOC';
+import Home from '@/pages/Home';
+import Hook from '@/pages/Hook';
+// import HOC from '@/pages/HOC';
 
-import NotFound from '~/pages/404';
+import NotFound from '@/pages/404';
 
-// const Home = lazy(() => import('~/pages/Home'));
-// const Hook = lazy(() => import('~/pages/Hook'));
-// const HOC = lazy(() => import('~/pages/HOC'));
-// const NotFound = lazy(() => import('~/pages/404'));
+// const Home = lazy(() => import('@/pages/Home'));
+// const Hook = lazy(() => import('@/pages/Hook'));
+// const HOC = lazy(() => import('@/pages/HOC'));
+// const NotFound = lazy(() => import('@/pages/404'));
 
 // const lazyLoad = (children: ReactNode): ReactNode => {
 //   return <Suspense fallback={<h1>Loading...</h1>}>{children}</Suspense>;
@@ -21,20 +21,20 @@ import NotFound from '~/pages/404';
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <LayoutApp />,
+    element: <LayoutContainer />,
     children: [
       { path: '/home', element: <Home /> },
       { path: '/hook', element: <Hook /> },
-      { path: '/hoc', element: <HOC /> },
+      // { path: '/hoc', element: <HOC /> },
     ],
   },
   {
     path: '/default',
-    element: <LayoutDefault />,
+    element: <LayoutBlank />,
     children: [
       { path: '/default/home', element: <Home /> },
       { path: '/default/hook', element: <Hook /> },
-      { path: '/default/hoc', element: <HOC /> },
+      // { path: '/default/hoc', element: <HOC /> },
     ],
   },
   { path: '*', element: <NotFound /> },

@@ -1,6 +1,6 @@
-import React, { PropsWithRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
-const createLogComponent = (WrappedComponent: React.ComponentType<P>) => {
+const createLogComponent = (WrappedComponent: React.ComponentType) => {
   const LogComponent: React.FC = (props) => {
     useEffect(() => {
       console.log('component mount');
