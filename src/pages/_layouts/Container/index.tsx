@@ -3,30 +3,31 @@ import { Link, Outlet, RouteObject } from 'react-router-dom';
 import routes from '@/routes';
 import './index.css';
 
-const LayoutContainer: React.FC = () => {
-  const createMenu = (routes: RouteObject[]) => {
-    return <ul>{routes.map(createMenuItem)}</ul>;
-  };
+const createMenu = (routes: RouteObject[]) => {
+  return <div>{routes.map(createMenuItem)}</div>;
+};
 
-  const createMenuItem = (route: RouteObject) => {
-    return (
-      <li key={route.path}>
-        <Link key={route.path} to={route.path as string}>
-          {route.path}
-        </Link>
-        {Array.isArray(route.children) && createMenu(route.children as RouteObject[])}
-      </li>
-    );
-  };
-
+const createMenuItem = (route: RouteObject) => {
   return (
-    <div className="app-container">
-      <div className="app-menu">{createMenu(routes)}</div>
-      <div className="app-context-container">
-        <div className="app-header">header</div>
-        <div className="app-context">
-          <Outlet />
-        </div>
+    <div style={{ paddingLeft: 20 }} key={route.path}>
+      <Link key={route.path} to={route.path as string}>
+        {route.path}
+      </Link>
+      {Array.isArray(route.children) && createMenu(route.children as RouteObject[])}
+    </div>
+  );
+};
+
+const LayoutContainer: React.FC = () => {
+  return (
+    <div className="container">
+      <div className="side">
+        <div className="logo">LOGO</div>
+        {createMenu(routes)}
+      </div>
+      <div className="content">
+        <div className="header">header</div>
+        <Outlet />
       </div>
     </div>
   );
