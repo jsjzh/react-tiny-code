@@ -13,7 +13,7 @@ const createMenuItem = (route: RouteObject) => {
       <Link key={route.path} to={route.path as string}>
         {route.path}
       </Link>
-      {Array.isArray(route.children) && createMenu(route.children as RouteObject[])}
+      {Array.isArray(route.children) && createMenu(route.children)}
     </div>
   );
 };
