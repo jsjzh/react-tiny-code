@@ -1,4 +1,4 @@
-import { RootState, store } from '@/stores/redux';
+import { AppDispatch, RootState, store } from '@/stores/redux';
 import { globalBuilderActions } from '@/stores/redux/reducer/globalBuilder';
 import { globalSlicerActions } from '@/stores/redux/reducer/globalSlicer';
 import { useState } from 'react';
@@ -6,7 +6,7 @@ import { Provider, useSelector, useDispatch } from 'react-redux';
 
 const ControllerBuilder: React.FC = () => {
   const count = useSelector((state: RootState) => state.globalBuilder.count);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const [addCount, setAddCount] = useState(0);
 
@@ -26,7 +26,7 @@ const ControllerBuilder: React.FC = () => {
 
 const ControllerSlicer: React.FC = () => {
   const count = useSelector((state: RootState) => state.globalSlicer.count);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const [addCount, setAddCount] = useState(0);
 
