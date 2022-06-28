@@ -12,7 +12,7 @@ const createLogComponent = (WrappedComponent: React.ComponentType) => {
     return <WrappedComponent {...props} />;
   };
 
-  return <LogComponent />;
+  return () => <LogComponent />;
 };
 
 const HOCComponent: React.FC = () => {
