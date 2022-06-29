@@ -1,21 +1,16 @@
-import { RouteObject } from 'react-router-dom';
-
-import LayoutContainer from '@/pages/_layouts/Container';
-import LayoutBlank from '@/pages/_layouts/Blank';
-
-// import Home from '@/pages/Home';
-// import Hook from '@/pages/Hook';
-// import HOC from '@/pages/HOC';
-// import NotFound from '@/pages/404';
-
 import { lazy, Suspense } from 'react';
 import type { ReactNode } from 'react';
+import type { RouteObject } from 'react-router-dom';
+
 import Loading from '@/components/Loading';
+import LayoutContainer from '@/pages/_layouts/Container';
+import LayoutBlank from '@/pages/_layouts/Blank';
 
 const Home = lazy(() => import('@/pages/Home'));
 const Hook = lazy(() => import('@/pages/Hook'));
 const HOC = lazy(() => import('@/pages/HOC'));
 const Redux = lazy(() => import('@/pages/Redux'));
+const Context = lazy(() => import('@/pages/Context'));
 
 const NotFound = lazy(() => import('@/pages/404'));
 
@@ -32,18 +27,20 @@ const routes: RouteObject[] = [
       { path: '/hook', element: lazyLoad(<Hook />) },
       { path: '/hoc', element: lazyLoad(<HOC />) },
       { path: '/redux', element: lazyLoad(<Redux />) },
+      { path: '/context', element: lazyLoad(<Context />) },
     ],
   },
-  // {
-  //   path: '/default',
-  //   element: <LayoutBlank />,
-  //   children: [
-  //     { path: '/default/home', element: lazyLoad(<Home />) },
-  //     { path: '/default/hook', element: lazyLoad(<Hook />) },
-  //     { path: '/default/hoc', element: lazyLoad(<HOC />) },
-  //     { path: '/redux', element: lazyLoad(<Redux />) },
-  //   ],
-  // },
+  {
+    path: '/default',
+    element: <LayoutBlank />,
+    children: [
+      { path: '/default/home', element: lazyLoad(<Home />) },
+      { path: '/default/hook', element: lazyLoad(<Hook />) },
+      { path: '/default/hoc', element: lazyLoad(<HOC />) },
+      { path: '/default/redux', element: lazyLoad(<Redux />) },
+      { path: '/default/context', element: lazyLoad(<Context />) },
+    ],
+  },
   { path: '*', element: <NotFound /> },
 ];
 
