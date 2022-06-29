@@ -29,11 +29,11 @@ const ControllerFetch: React.FC = () => {
 
   const [app, setApp] = useState('');
 
-  useEffect(() => {
-    const fetchPageData = () => {
-      dispatch(globalActions.getApps({ app, pageNo: 1, pageSize: 5 }));
-    };
+  const fetchPageData = () => {
+    dispatch(globalActions.getApps({ app, pageNo: 1, pageSize: 5 }));
+  };
 
+  useEffect(() => {
     fetchPageData();
   }, [app]);
 
