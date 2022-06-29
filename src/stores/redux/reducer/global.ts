@@ -37,6 +37,9 @@ export const global = createSlice({
     count: (state, action: PayloadAction<number>) => {
       state.count += action.payload;
     },
+    reset: (state) => {
+      state.count = 0;
+    },
   },
   extraReducers: (builder) => {
     builder
