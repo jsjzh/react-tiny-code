@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import globalSlicer from './reducer/globalSlicer';
-import globalBuilder from './reducer/globalBuilder';
+import global from './reducer/global';
+import logger from 'redux-logger';
+import { isDevelopment } from '@/shared';
 
 export const store = configureStore({
-  reducer: {
-    globalSlicer,
-    globalBuilder,
-  },
+  reducer: { global },
+  middleware: (getDefaultMiddleware) =>
+    isDevelopment ? getDefaultMiddleware().concat(logger) : getDefaultMiddleware(),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

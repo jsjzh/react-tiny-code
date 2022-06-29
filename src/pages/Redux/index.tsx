@@ -1,45 +1,50 @@
 import { AppDispatch, RootState, store } from '@/stores/redux';
-import { globalBuilderActions } from '@/stores/redux/reducer/globalBuilder';
-import { globalSlicerActions } from '@/stores/redux/reducer/globalSlicer';
-import { useState } from 'react';
+import { globalActions } from '@/stores/redux/reducer/global';
+import { useEffect, useState } from 'react';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 
-const ControllerBuilder: React.FC = () => {
-  const count = useSelector((state: RootState) => state.globalBuilder.count);
+const ControllerGlobal: React.FC = () => {
+  const global = useSelector((state: RootState) => state.global);
   const dispatch = useDispatch<AppDispatch>();
 
   const [addCount, setAddCount] = useState(0);
 
   return (
     <>
-      <div style={{ marginTop: 20 }}>ControllerBuilder</div>
-      <div>{count}</div>
-      <button onClick={() => dispatch(globalBuilderActions.add())}>+</button>
-      <button onClick={() => dispatch(globalBuilderActions.sub())}>-</button>
+      <div style={{ marginTop: 20 }}>ControllerGlobal</div>
+      <div>{global.count}</div>
+      <button onClick={() => dispatch(globalActions.add())}>+</button>
+      <button onClick={() => dispatch(globalActions.sub())}>-</button>
       <div>
         <input type="number" value={addCount} onChange={(e) => setAddCount(Number(e.target.value))} />
-        <button onClick={() => dispatch(globalBuilderActions.count(addCount))}>add</button>
+        <button onClick={() => dispatch(globalActions.count(addCount))}>add</button>
       </div>
     </>
   );
 };
 
-const ControllerSlicer: React.FC = () => {
-  const count = useSelector((state: RootState) => state.globalSlicer.count);
+const ControllerFetch: React.FC = () => {
+  const global = useSelector((state: RootState) => state.global);
   const dispatch = useDispatch<AppDispatch>();
 
-  const [addCount, setAddCount] = useState(0);
+  const [app, setApp] = useState('');
+
+  useEffect(() => {
+    const fetchPageData = () => {
+      dispatch(globalActions.getApps({ app, pageNo: 1, pageSize: 5 }));
+    };
+
+    fetchPageData();
+  }, [app]);
 
   return (
     <>
-      <div style={{ marginTop: 20 }}>ControllerSlicer</div>
-      <div>{count}</div>
-      <button onClick={() => dispatch(globalSlicerActions.add())}>+</button>
-      <button onClick={() => dispatch(globalSlicerActions.sub())}>-</button>
-      <div>
-        <input type="number" value={addCount} onChange={(e) => setAddCount(Number(e.target.value))} />
-        <button onClick={() => dispatch(globalSlicerActions.count(addCount))}>add</button>
-      </div>
+      <div style={{ marginTop: 20 }}>ControllerFetch</div>
+      <input value={app} onChange={(e) => setApp(e.target.value)} />
+      <button onClick={() => setApp('')}>clear</button>
+      {global.pageData.items.map((item) => (
+        <div key={item.id}>{item.appCode}</div>
+      ))}
     </>
   );
 };
@@ -47,8 +52,8 @@ const ControllerSlicer: React.FC = () => {
 const Redux: React.FC = () => {
   return (
     <Provider store={store}>
-      <ControllerBuilder />
-      <ControllerSlicer />
+      <ControllerGlobal />
+      <ControllerFetch />
     </Provider>
   );
 };
