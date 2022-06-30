@@ -10,11 +10,13 @@ const getApps = createAsyncThunk(createType(mockAPI.getApps.name), mockAPI.getAp
 
 interface GlobalState {
   count: number;
+  text: string;
   pageData: Mock.getApps;
 }
 
 const initialState: GlobalState = {
   count: 0,
+  text: 'hello world',
   pageData: {
     items: [],
     pageNo: 0,

@@ -1,0 +1,9 @@
+.customMessageContainer {
+  position: fixed;
+  right: 2rem;
+  top: 2rem;
+  padding: 1rem;
+  background-color: aliceblue;
+  border-radius: 1rem;
+  width: 10rem;
+}

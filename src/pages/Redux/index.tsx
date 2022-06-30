@@ -1,8 +1,9 @@
+import { sleepSync } from '@/shared';
 import { AppDispatch, RootState, store } from '@/stores/redux';
 import { globalActions } from '@/stores/redux/reducer/global';
 import _ from 'lodash';
 import moment from 'moment';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 
 const ControllerGlobal: React.FC = () => {
@@ -22,6 +23,22 @@ const ControllerGlobal: React.FC = () => {
         <button onClick={() => dispatch(globalActions.count(addCount))}>add</button>
         <button onClick={() => dispatch(globalActions.reset())}>reset</button>
       </div>
+    </>
+  );
+};
+
+const SleepComponent: React.FC = () => {
+  const global = useSelector((state: RootState) => state.global);
+
+  const text = useMemo(() => {
+    sleepSync(500);
+    return global.text;
+  }, [global.text]);
+
+  return (
+    <>
+      <div style={{ marginTop: 20 }}>SleepComponent</div>
+      <div>{text}</div>
     </>
   );
 };
@@ -61,6 +78,7 @@ const ControllerFetch: React.FC = () => {
 const Redux: React.FC = () => {
   return (
     <Provider store={store}>
+      <SleepComponent />
       <ControllerGlobal />
       <ControllerFetch />
     </Provider>
