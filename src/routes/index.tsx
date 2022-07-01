@@ -14,6 +14,8 @@ const Context = lazy(() => import('@/pages/Context'));
 
 const NotFound = lazy(() => import('@/pages/404'));
 
+const SetState = lazy(() => import('@/pages/_examples/SetState'));
+
 const lazyLoad = (children: ReactNode): ReactNode => {
   return <Suspense fallback={<Loading />}>{children}</Suspense>;
 };
@@ -40,6 +42,11 @@ const routes: RouteObject[] = [
       { path: '/default/redux', element: lazyLoad(<Redux />) },
       { path: '/default/context', element: lazyLoad(<Context />) },
     ],
+  },
+  {
+    path: '/example',
+    element: <LayoutContainer />,
+    children: [{ path: '/example/SetState', element: lazyLoad(<SetState />) }],
   },
   { path: '*', element: <NotFound /> },
 ];
