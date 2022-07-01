@@ -62,12 +62,15 @@ const SleepComponent: React.FC = () => {
   );
 };
 
+const LogedCount = createLogComponent(Count);
+const LogedSleepComponent = createLogComponent(SleepComponent);
+
 const Context: React.FC = () => {
   return (
     <>
       <GlobalContextProvider>
-        <div>{createLogComponent(Count)()}</div>
-        <div>{createLogComponent(SleepComponent)()}</div>
+        <LogedCount />
+        <LogedSleepComponent />
       </GlobalContextProvider>
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
-export const createLogComponent = (WrappedComponent: React.ComponentType) => {
-  const LogComponent = () => {
+export const createLogComponent = <P extends {}>(WrappedComponent: React.ComponentType<P>) => {
+  const LogComponent = (props: P) => {
     useEffect(() => {
       console.log('component mount');
       return () => {
@@ -9,14 +9,18 @@ export const createLogComponent = (WrappedComponent: React.ComponentType) => {
       };
     }, []);
 
-    return <WrappedComponent />;
+    return <WrappedComponent {...props} />;
   };
 
   return LogComponent;
 };
 
-const HOCComponent: React.FC = () => {
-  return <>HOCComponent</>;
+const Component: React.FC<{ title: string }> = (props) => {
+  return <>{props.title}</>;
 };
 
-export default createLogComponent(HOCComponent);
+const LogComponent = createLogComponent(Component);
+
+export default () => {
+  return <LogComponent title="hello world HOCComponent" />;
+};
