@@ -122,9 +122,14 @@ const UseCallback: React.FC = () => {
 };
 
 const Child: React.FC<{ number: number }> = (props) => {
-  console.log('rerender');
   sleepSync(500);
-  return <div>number: {props.number}</div>;
+  const ref = useRef(0);
+  return (
+    <>
+      <div>number: {props.number}</div>
+      <div>rerender count: {ref.current++}</div>
+    </>
+  );
 };
 
 const MemoChild = React.memo(Child);
@@ -139,7 +144,7 @@ const UseMemo: React.FC = () => {
       <button onClick={() => setState((preState) => ({ ...preState, count: preState.count + 1 }))}>add count</button>
       <button onClick={() => setState((preState) => ({ ...preState, number: preState.number + 1 }))}>add number</button>
       <button onClick={() => setState((preState) => ({ ...preState, number: preState.number - 1 }))}>sub number</button>
-      {/* <MemoChild number={state.number} /> */}
+      <MemoChild number={state.number} />
       {useMemo(
         () => (
           <Child number={state.number} />
@@ -190,6 +195,64 @@ const UseRef: React.FC = () => {
   );
 };
 
+// https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/33fa94d873da42adae333219e9bbec87~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp
+const UseLayoutEffect: React.FC = () => {
+  const [state, setState] = useState(0);
+
+  /**
+   * 此外，从 React 18 开始，当它是离散的用户输入（如点击）的结果时，或者当它是由 flushSync 包装的更新结果时，传递给 useEffect 的函数将在屏幕布局和绘制之前同步执行。这种行为便于事件系统或 flushSync 的调用者观察该效果的结果。
+   * 注意
+   * 这只影响传递给 useEffect 的函数被调用时 — 在这些 effect 中执行的更新仍会被推迟。这与 useLayoutEffect 不同，后者会立即启动该函数并处理其中的更新。
+   */
+  // useEffect(() => {
+  //   if (state === 1) {
+  //     sleepSync(500);
+  //     setState(2);
+  //   } else if (state === 2) {
+  //     sleepSync(500);
+  //     setState(3);
+  //   } else if (state === 3) {
+  //     sleepSync(500);
+  //     setState(4);
+  //   } else if (state === 4) {
+  //     sleepSync(500);
+  //     setState(5);
+  //     // 这里有个很奇怪的点，就是最后一个 setState(5) 迟迟不更新到页面上
+  //     // TODO 估计的去看看源码了，另外，上面的注释，应该就是这个的主要原因
+  //   } else if (state === 5) {
+  //     sleepSync(2000);
+  //     setState(6);
+  //   }
+  // }, [state]);
+
+  useLayoutEffect(() => {
+    if (state === 1) {
+      sleepSync(500);
+      setState(2);
+    } else if (state === 2) {
+      sleepSync(500);
+      setState(3);
+    } else if (state === 3) {
+      sleepSync(500);
+      setState(4);
+    } else if (state === 4) {
+      sleepSync(500);
+      setState(5);
+    } else if (state === 5) {
+      sleepSync(500);
+      setState(6);
+    }
+  }, [state]);
+
+  return (
+    <>
+      <div style={{ marginTop: 20 }}>UseLayoutEffect</div>
+      <div>state: {state}</div>
+      <button onClick={() => setState(state + 1)}>add</button>
+    </>
+  );
+};
+
 const Hook: React.FC = () => {
   return (
     <>
@@ -200,6 +263,7 @@ const Hook: React.FC = () => {
       <UseMemo />
       <UseReducer />
       <UseRef />
+      <UseLayoutEffect />
     </>
   );
 };

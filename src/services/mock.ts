@@ -1,5 +1,5 @@
 import createAPI from '@/shared/createAPI';
 
-const api = createAPI('greatwall-web.dasouche-inc.net');
+const api = createAPI(process.env.REACT_APP_MOCK_HOST);
 
-export const getApps = async (data: { app: string } & T.IPage) => api.getJSON<Mock.getApps>(`/apps`, data);
+export const fetchData = async (data: { query: string }) => api.getJSON<Mock.fetchData>(`/api/v1/search`, data);

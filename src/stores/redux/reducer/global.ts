@@ -6,24 +6,18 @@ const namespace = 'global';
 
 const createType = createNamespaceType(namespace);
 
-const getApps = createAsyncThunk(createType(mockAPI.getApps.name), mockAPI.getApps);
+const fetchData = createAsyncThunk(createType(mockAPI.fetchData.name), mockAPI.fetchData);
 
 interface GlobalState {
   count: number;
   text: string;
-  pageData: Mock.getApps;
+  pageData: Mock.fetchData;
 }
 
 const initialState: GlobalState = {
   count: 0,
   text: 'hello world',
-  pageData: {
-    items: [],
-    pageNo: 0,
-    pageSize: 0,
-    totalPage: 0,
-    totalSize: 0,
-  },
+  pageData: {},
 };
 
 export const global = createSlice({
@@ -45,14 +39,14 @@ export const global = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getApps.pending, (state, action) => {})
-      .addCase(getApps.fulfilled, (state, action) => {
+      .addCase(fetchData.pending, (state, action) => {})
+      .addCase(fetchData.fulfilled, (state, action) => {
         state.pageData = action.payload;
       })
-      .addCase(getApps.rejected, (state, action) => {});
+      .addCase(fetchData.rejected, (state, action) => {});
   },
 });
 
-export const globalActions = { ...global.actions, getApps };
+export const globalActions = { ...global.actions, fetchData };
 
 export default global.reducer;

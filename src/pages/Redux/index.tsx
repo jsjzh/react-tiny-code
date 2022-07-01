@@ -47,30 +47,28 @@ const ControllerFetch: React.FC = () => {
   const global = useSelector((state: RootState) => state.global);
   const dispatch = useDispatch<AppDispatch>();
 
-  const [app, setApp] = useState('');
-
-  const _fetchPageData = () => {
-    dispatch(globalActions.getApps({ app, pageNo: 1, pageSize: 5 }));
-  };
-
-  const fetchPageData = _.debounce(_fetchPageData, 500);
+  const [query, setQuery] = useState('react');
 
   useEffect(() => {
+    const _fetchPageData = () => {
+      dispatch(globalActions.fetchData({ query }));
+    };
+
+    const fetchPageData = _.debounce(_fetchPageData, 500);
+
     fetchPageData();
     return () => {
       fetchPageData.cancel();
     };
-  }, [app]);
+  }, [query]);
 
   return (
     <>
       <div style={{ marginTop: 20 }}>ControllerFetch</div>
       <div>{moment().format('YYYY-MM-DD HH:mm:ss:SSS')}</div>
-      <input value={app} onChange={(e) => setApp(e.target.value)} />
-      <button onClick={() => setApp('')}>clear</button>
-      {global.pageData.items.map((item) => (
-        <div key={item.id}>{item.appCode}</div>
-      ))}
+      <input value={query} onChange={(e) => setQuery(e.target.value)} />
+      <button onClick={() => setQuery('')}>clear</button>
+      <div>{JSON.stringify(global.pageData)}</div>
     </>
   );
 };
