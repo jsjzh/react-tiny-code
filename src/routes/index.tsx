@@ -17,6 +17,7 @@ const NotFound = lazy(() => import('@/pages/404'));
 const SetState = lazy(() => import('@/pages/_examples/SetState'));
 const BoxModel = lazy(() => import('@/pages/_examples/BoxModel'));
 const Prototype = lazy(() => import('@/pages/_examples/Prototype'));
+const Instanceof = lazy(() => import('@/pages/_examples/Instanceof'));
 
 const lazyLoad = (children: ReactNode): ReactNode => {
   return <Suspense fallback={<Loading />}>{children}</Suspense>;
@@ -52,6 +53,7 @@ const routes: RouteObject[] = [
       { path: '/example/SetState', element: lazyLoad(<SetState />) },
       { path: '/example/BoxModel', element: lazyLoad(<BoxModel />) },
       { path: '/example/Prototype', element: lazyLoad(<Prototype />) },
+      { path: '/example/Instanceof', element: lazyLoad(<Instanceof />) },
     ],
   },
   { path: '*', element: <NotFound /> },
