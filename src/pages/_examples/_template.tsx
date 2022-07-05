@@ -9,7 +9,12 @@ import React from 'react';
 interface _TemplateProps {}
 
 const _Template: React.FC<_TemplateProps> = (props) => {
-  return <>_Template</>;
+  return (
+    <>
+      <div style={{ marginTop: 20 }}>_Template</div>
+      <div>_Template</div>
+    </>
+  );
 };
 
 export default _Template;
