@@ -29,6 +29,7 @@ class SetState extends React.Component<SetStateProps, SetStateState> {
   }
 
   componentDidMount() {
+    debugger;
     this.setState({
       data: 'did mount state',
     });
@@ -37,6 +38,7 @@ class SetState extends React.Component<SetStateProps, SetStateState> {
     // did mount state data
 
     setTimeout(() => {
+      debugger;
       this.setState({
         data: 'setTimeout',
       });
@@ -45,8 +47,24 @@ class SetState extends React.Component<SetStateProps, SetStateState> {
     });
   }
 
+  test = () => {
+    setTimeout(() => {
+      this.setState({ data: 'hello 1' });
+      console.log('data', this.state.data);
+      this.setState({ data: 'hello 2' });
+      console.log('data', this.state.data);
+    }, 0);
+  };
+
   render() {
-    return <>SetState</>;
+    console.log('render');
+
+    return (
+      <>
+        <div style={{ marginTop: 20 }}>SetState</div>
+        <button onClick={this.test}>{this.state.data}</button>
+      </>
+    );
   }
 }
 

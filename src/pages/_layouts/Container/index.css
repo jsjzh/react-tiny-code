@@ -6,8 +6,8 @@
 }
 
 .side {
-  background-color: #ccff66;
-  /* background-color: #eee; */
+  /* background-color: #ccff66; */
+  background-color: #eee;
   width: 15rem;
 }
 
@@ -15,20 +15,20 @@
   height: 5rem;
   text-align: center;
   line-height: 5rem;
-  background-color: #666699;
-  /* background-color: #eee; */
+  /* background-color: #666699; */
+  background-color: #eee;
   color: #ffffff;
   font-size: 2rem;
 }
 
 .content {
-  background-color: #66cccc;
-  /* background-color: #eee; */
+  /* background-color: #66cccc; */
+  background-color: #eee;
   flex: 1;
 }
 
 .header {
-  background-color: #ff99cc;
-  /* background-color: #eee; */
+  /* background-color: #ff99cc; */
+  background-color: #eee;
   height: 5rem;
 }
