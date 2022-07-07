@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { add } from 'lodash';
 import React, { useEffect, useState } from 'react';
 
 /**
@@ -40,7 +41,7 @@ import React, { useEffect, useState } from 'react';
 
 interface JavaScriptBasisProps {}
 
-const examples = ['CallApplyBind', 'Instanceof', 'Prototype', 'BasisType'];
+const examples = ['CallApplyBind', 'Instanceof', 'Prototype', 'BasisType', 'AddExample'];
 
 const JavaScriptBasis: React.FC<JavaScriptBasisProps> = (props) => {
   const [example, setExample] = useState(() => localStorage.getItem('JavaScriptBasis:example') || examples[0]);
@@ -98,11 +99,26 @@ const JavaScriptBasis: React.FC<JavaScriptBasisProps> = (props) => {
     console.log(typeof BigInt(1));
   };
 
+  const AddExample = () => {
+    const add = (x, y, z) => x + y + z;
+
+    const curry = (fn, ...args) =>
+      args.length >= fn.length ? fn(...args) : (..._args) => curry(fn, ...args, ..._args);
+
+    const CurryAdd = curry(add);
+
+    console.log('result %d', CurryAdd(1)(2)(3));
+    console.log('result %d', CurryAdd(1, 2, 3));
+    console.log('result %d', CurryAdd(1, 2)(3));
+    console.log('result %d', CurryAdd(1)(2, 3));
+  };
+
   useEffect(() => {
     if (example === 'CallApplyBind') CallApplyBind();
     else if (example === 'Instanceof') Instanceof();
     else if (example === 'Prototype') Prototype();
     else if (example === 'BasisType') BasisType();
+    else if (example === 'AddExample') AddExample();
   }, [example]);
 
   const handChange = (e) => {
