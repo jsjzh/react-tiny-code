@@ -37,6 +37,15 @@ import React, { useEffect, useState } from 'react';
  *
  * null undefined number string boolean object
  * symbol bigInt
+ *
+ * ----------------------------------------------------
+ *
+ * 实现 add(1,2,3) add(1,2)(3) add(1)(2)(3)
+ * curry
+ *
+ * ----------------------------------------------------
+ *
+ *
  */
 
 interface JavaScriptBasisProps {}

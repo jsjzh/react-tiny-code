@@ -15,7 +15,7 @@ const Context = lazy(() => import('@/pages/Context'));
 const NotFound = lazy(() => import('@/pages/404'));
 
 const SetState = lazy(() => import('@/pages/_examples/SetState'));
-const BoxModel = lazy(() => import('@/pages/_examples/BoxModel'));
+const CSSBasis = lazy(() => import('@/pages/_examples/CSSBasis'));
 const JavaScriptBasis = lazy(() => import('@/pages/_examples/JavaScriptBasis'));
 
 const lazyLoad = (children: ReactNode): ReactNode => {
@@ -50,7 +50,7 @@ const routes: RouteObject[] = [
     element: <LayoutContainer />,
     children: [
       { path: '/example/SetState', element: lazyLoad(<SetState />) },
-      { path: '/example/BoxModel', element: lazyLoad(<BoxModel />) },
+      { path: '/example/CSSBasis', element: lazyLoad(<CSSBasis />) },
       { path: '/example/JavaScriptBasis', element: lazyLoad(<JavaScriptBasis />) },
     ],
   },

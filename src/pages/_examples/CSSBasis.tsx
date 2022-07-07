@@ -34,9 +34,33 @@ import styled from 'styled-components';
  * float 不为 none
  * position 不为 static 或 relative
  * display 为 inline-blocks table table-cell table-caption flex inline-flex
+ *
+ * ----------------------------------------------------
+ *
+ * 重绘（repaint）和重排（reflow）
+ *
+ * 重绘不一定引发重排（比如颜色改变），重排必然导致重绘（比如改变元素位置）
+ *
+ * 重绘：元素的外观改变，比如元素的背景色、文字颜色、边框颜色等
+ * 重排：
+ *  添加、删除可见的 dom
+ *  元素的位置改变
+ *  元素的尺寸改变（外边距、内边距、边框厚度、宽高等几何属性）
+ *  页面渲染初始化
+ *  浏览器窗口尺寸改变
+ *  用 js 获取某些属性，浏览器为取得正确的值也会触发重排，会导致队列刷新
+ *    比如 offsetTop、offsetLeft、 offsetWidth、offsetHeight、scrollTop、scrollLeft、scrollWidth、scrollHeight、clientTop、clientLeft、clientWidth、clientHeight、getComputedStyle()、getBoundingClientRect()
+ * 减少重绘重排
+ *  不要一条条修改 dom 样式
+ *  为动画元素使用 fixed 或者 absolute
+ *
+ * ----------------------------------------------------
+ *
+ * 浏览器渲染 html，浏览器的关键渲染路径 CRP（Critical Rendering Path）
+ *
  */
 
-interface BoxModelProps {}
+interface CSSBasisProps {}
 
 const ContentBox = styled.div`
   box-sizing: content-box;
@@ -61,10 +85,10 @@ const BFCP = styled.p`
   background: red;
 `;
 
-const BoxModel: React.FC<BoxModelProps> = (props) => {
+const CSSBasis: React.FC<CSSBasisProps> = (props) => {
   return (
     <>
-      <div style={{ marginTop: 20 }}>BoxModel</div>
+      <div style={{ marginTop: 20 }}>CSSBasis</div>
       <div style={{ marginLeft: 20 }}>
         <div style={{ marginTop: 20 }}>ContentBox</div>
         <ContentBox />
@@ -94,4 +118,4 @@ const BoxModel: React.FC<BoxModelProps> = (props) => {
   );
 };
 
-export default BoxModel;
+export default CSSBasis;
