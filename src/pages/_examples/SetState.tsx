@@ -4,6 +4,7 @@ import React from 'react';
  * 问题描述：${xxx}
  *
  * https://zhuanlan.zhihu.com/p/350332132
+ * https://zhuanlan.zhihu.com/p/460668459
  *
  * TLDR
  * 只要你进入了 react 的调度流程，那就是异步的。
