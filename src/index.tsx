@@ -4,7 +4,6 @@ import { BrowserRouter, HashRouter, MemoryRouter } from 'react-router-dom';
 // import reportWebVitals from './reportWebVitals';
 
 import './index.css';
-import './normalize.css';
 
 import App from '@/pages/App';
 

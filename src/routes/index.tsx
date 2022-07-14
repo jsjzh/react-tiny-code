@@ -11,6 +11,7 @@ const Hook = lazy(() => import('@/pages/Hook'));
 const HOC = lazy(() => import('@/pages/HOC'));
 const Redux = lazy(() => import('@/pages/Redux'));
 const Context = lazy(() => import('@/pages/Context'));
+const EditableTable = lazy(() => import('@/pages/EditableTable'));
 
 const NotFound = lazy(() => import('@/pages/404'));
 
@@ -27,22 +28,24 @@ const routes: RouteObject[] = [
     path: '/',
     element: <LayoutContainer />,
     children: [
-      { path: '/home', element: lazyLoad(<Home />) },
-      { path: '/hook', element: lazyLoad(<Hook />) },
-      { path: '/hoc', element: lazyLoad(<HOC />) },
-      { path: '/redux', element: lazyLoad(<Redux />) },
-      { path: '/context', element: lazyLoad(<Context />) },
+      { path: '/Home', element: lazyLoad(<Home />) },
+      { path: '/Hook', element: lazyLoad(<Hook />) },
+      { path: '/HOC', element: lazyLoad(<HOC />) },
+      { path: '/Redux', element: lazyLoad(<Redux />) },
+      { path: '/Context', element: lazyLoad(<Context />) },
+      { path: '/EditableTable', element: lazyLoad(<EditableTable />) },
     ],
   },
   {
     path: '/default',
     element: <LayoutBlank />,
     children: [
-      { path: '/default/home', element: lazyLoad(<Home />) },
-      { path: '/default/hook', element: lazyLoad(<Hook />) },
-      { path: '/default/hoc', element: lazyLoad(<HOC />) },
-      { path: '/default/redux', element: lazyLoad(<Redux />) },
-      { path: '/default/context', element: lazyLoad(<Context />) },
+      { path: '/default/Home', element: lazyLoad(<Home />) },
+      { path: '/default/Hook', element: lazyLoad(<Hook />) },
+      { path: '/default/HOC', element: lazyLoad(<HOC />) },
+      { path: '/default/Redux', element: lazyLoad(<Redux />) },
+      { path: '/default/Context', element: lazyLoad(<Context />) },
+      { path: '/default/EditableTable', element: lazyLoad(<EditableTable />) },
     ],
   },
   {
