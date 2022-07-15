@@ -101,9 +101,13 @@ const EditableTable: React.FC<EditableTableProps> = (props) => {
   return (
     <div style={{ margin: '1rem' }}>
       <div style={{ margin: '1rem' }}>
-        <Button onClick={handleAddFirst}>add first</Button>
-        <Button onClick={handleAddLast}>add last</Button>
-        <Button style={{ float: 'right' }} onClick={handleGetData}>
+        <Button type="primary" onClick={handleAddFirst}>
+          add first
+        </Button>
+        <Button type="primary" onClick={handleAddLast}>
+          add last
+        </Button>
+        <Button type="primary" style={{ float: 'right' }} onClick={handleGetData}>
           get data
         </Button>
       </div>
